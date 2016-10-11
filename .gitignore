@@ -1,0 +1,7 @@
+# Codigo generado por python y otras herramientas
+*.swp
+*.pyc
+tags
+.coverage
+# omitimos el ambiente virtual creado por Virtualenv
+venv
