@@ -3,6 +3,6 @@
 *.pyc
 tags
 .coverage
-.db
+*.db
 # omitimos el ambiente virtual creado por Virtualenv
 venv
