@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
@@ -6,7 +7,18 @@ app = Flask(__name__)
 
 # Configuramos el accesso a MYSQL. Se asume que existe el usuario user con pass password
 # y la bd example
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://user:password@localhost/example"
+DB_USER = os.getenv("EXAMPLE_DB_USER", "user")
+DB_PASSWORD = os.getenv("EXAMPLE_DB_PASSWORD", "password")
+DB_HOST = os.getenv("EXAMPLE_DB_HOST", "localhost")
+DB_NAME = os.getenv("EXAMPLE_DB_NAME", "example")
+
+# "mysql://user:password@localhost/example"
+SQLALCHEMY_DATABASE_URI = "mysql://" + DB_USER + ":" \
+                                     + DB_PASSWORD + "@" \
+                                     + DB_HOST + "/" \
+                                     + DB_NAME
+
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 db = SQLAlchemy(app)
 
 class Task(db.Model):
