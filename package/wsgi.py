@@ -1,4 +1,4 @@
-from example import app
+from example import app, db
 
 if __name__ == "__main__":
 	app.run()

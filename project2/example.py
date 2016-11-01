@@ -35,6 +35,9 @@ class Task(db.Model):
 	def __repr__(self):
 		return "<Task %r>" % self.task
 
+db.create_all()
+db.session.commit()
+
 """
 _tasks = [
 	{"id": 1, "title": u"task 1", "description": u"task 1 description"},

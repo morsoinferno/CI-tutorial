@@ -31,7 +31,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf && \
 	ln -s /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
 
 # agregamos la app al contenedor
-COPY ../project2 /prod/project2
+COPY ./project2 /prod/project2
 
 EXPOSE 80
 
