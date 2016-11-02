@@ -1,23 +1,28 @@
+# docker run --rm --name prueba -ti -p 8080:80 -e PROJECT_NAME=project2 -e EXAMPLE_DB_HOST=mysql-app -e EXAMPLE_DB_NAME=example -e EXAMPLE_DB_USER=user -e EXAMPLE_DB_PASSWORD=password --link mysql-app morsoinferno/prueba:0.1
+
+# docker run --rm --name mysql-app -ti -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=example -e MYSQL_USER=user -e MYSQL_PASSWORD=password mysql:5.6
+
 mysql-app:
-  image: mysql:5.6
+  image: mysql:5.7
   environment:
     MYSQL_ROOT_PASSWORD: "password"
     MYSQL_DATABASE: "example"
     MYSQL_USER: "user"
     MYSQL_PASSWORD: "password"
-  expose:
+  ports:
     - "3306"
   stdin_open: true
   tty: true
-
+  
 example-app:
   image: morsoinferno/prueba:0.1
   environment:
+    PROJECT_NAME: "project2"
     EXAMPLE_DB_HOST: "mysql-app"
     EXAMPLE_DB_NAME: "example"
     EXAMPLE_DB_USER: "user"
     EXAMPLE_DB_PASSWORD: "password"
-  expose:
+  ports:
     - "80"
   links:
     - mysql-app
