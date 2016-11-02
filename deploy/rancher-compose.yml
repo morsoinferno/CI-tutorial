@@ -1,0 +1,6 @@
+mysql-app:
+  scale: 1
+
+example-app:
+  scale: 1
+  

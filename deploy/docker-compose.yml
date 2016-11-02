@@ -1,22 +1,24 @@
 mysql-app:
-  image: mysql
+  image: mysql:5.6
   environment:
     MYSQL_ROOT_PASSWORD: "password"
     MYSQL_DATABASE: "example"
     MYSQL_USER: "user"
     MYSQL_PASSWORD: "password"
   expose:
-    - "336"
+    - "3306"
   stdin_open: true
   tty: true
 
 example-app:
   image: morsoinferno/prueba:0.1
   environment:
-    EXAMPLE_DB_HOST: "myql-app"
+    EXAMPLE_DB_HOST: "mysql-app"
     EXAMPLE_DB_NAME: "example"
     EXAMPLE_DB_USER: "user"
     EXAMPLE_DB_PASSWORD: "password"
+  expose:
+    - "80"
   links:
     - mysql-app
   stdin_open: true

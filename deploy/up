@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# levantando el stack de CI-project
+# seteando las variables de ambiente
+# setenado ACCESS y KEY para rancher-compose
+export RANCHER_ACCESS_KEY=`cat ~/Documents/CI/rancher-compose-v0.8.6/pehuelche-CI-environ-access-key`
+export RANCHER_SECRET_KEY=`cat ~/Documents/CI/rancher-compose-v0.8.6/pehuelche-CI-environ-secret-key`
+# URL de Rancher
+export RANCHER_URL=http://pehuelche.diinf.usach.cl:8080
+# levantando el stack
+# con recreate para up buscamos recrear el stack para asegurarnos que los cambios se tomen en cuenta
+rancher-compose --project-name CI-tutorial \
+				--url $RANCHER_URL \
+				--access-key $RANCHER_ACCESS_KEY \
+				--secret-key $RANCHER_SECRET_KEY \
+				--debug \
+				up \
+				--recreate
+
