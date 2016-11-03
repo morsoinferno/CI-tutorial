@@ -12,11 +12,12 @@ docker-compose up -d
 sleep 20
 
 # hay un problema en que no se puede acceder a la BD de MYSQL, reinicio el contenedor
-# y funciona. Ver posibles soluciones.
-echo "Restarting deploy_example-app_1..."
-container_name=$(docker restart deploy_example-app_1)
-echo "${container_name} restarted"
-sleep 5
+# y funciona. Creo que el problema es lo que se demora en estar listo MYSQL
+# https://docs.docker.com/compose/startup-order/
+#echo "Restarting deploy_example-app_1..."
+#container_name=$(docker restart deploy_example-app_1)
+#echo "${container_name} restarted"
+#sleep 10
 
 # OS X (Darwin) o Linux
 if [ "$(uname -s)" = "Darwin" ] ; then

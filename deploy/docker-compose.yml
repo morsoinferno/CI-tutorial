@@ -26,5 +26,6 @@ example-app:
     - "80"
   links:
     - mysql-app
+  entrypoint: /wait-for-it.sh mysql-app:3306
   stdin_open: true
   tty: true

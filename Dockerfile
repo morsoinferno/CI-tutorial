@@ -33,6 +33,12 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf && \
 # agregamos la app al contenedor
 COPY ./project2 /prod/project2
 
+# agregamos un script para solucionar el siguiente problema
+# https://docs.docker.com/compose/startup-order/
+COPY wait-for-it.sh /
+
 EXPOSE 80
 
-CMD ["supervisord", "-n"]
+ENTRYPOINT ["/wait-for-it.sh", "mysql-app:3306"]
+
+CMD ["--", "supervisord", "-n"]
