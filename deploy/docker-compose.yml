@@ -26,6 +26,6 @@ example-app:
     - "80"
   links:
     - mysql-app
-  entrypoint: /wait-for-it.sh mysql-app:3306
+  entrypoint: /wait-for-it.sh --timeout=0 mysql-app:3306 -- supervisord -n
   stdin_open: true
   tty: true
