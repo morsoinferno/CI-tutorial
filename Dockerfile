@@ -35,7 +35,7 @@ COPY ./project2 /prod/project2
 
 # agregamos un script para solucionar el siguiente problema
 # https://docs.docker.com/compose/startup-order/
-COPY ./wait-for-it.sh /
+COPY wait-for-it.sh /
 
 RUN chmod +x /wait-for-it.sh
 
